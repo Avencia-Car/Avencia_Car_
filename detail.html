@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Détails du véhicule - Avencia Car</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="page-shell">
+
+<header>
+  <div class="logo-area">
+    <h1>AVENCIA CAR</h1>
+    <p>Location de confiance</p>
+  </div>
+  
+  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu" aria-controls="mainNav" aria-expanded="false">
+    <i class="fas fa-bars"></i>
+  </button>
+  
+  <nav class="main-nav" id="mainNav">
+    <a href="index.html#category-Volkswagen" class="nav-link" data-category="Volkswagen">
+      <img src="Logoe/volkswagen.png" alt="Volkswagen" class="nav-logo"> 
+      <span>Volkswagen</span>
+    </a>
+    <a href="index.html#category-Dacia" class="nav-link" data-category="Dacia">
+      <img src="Logoe/Dacia.png" alt="Dacia" class="nav-logo"> 
+      <span>Dacia</span>
+    </a>
+    <a href="index.html#category-Opel" class="nav-link" data-category="Opel">
+      <img src="Logoe/opel.png" alt="Opel" class="nav-logo"> 
+      <span>Opel</span>
+    </a> 
+    <a href="index.html#contact-footer" class="nav-link contact-nav">
+      <i class="fas fa-envelope"></i> <span>Contact</span>
+    </a>
+  </nav>  
+
+  <a href="index.html" class="home-link" id="homeLink">
+    <i class="fas fa-home"></i> ACCUEIL
+  </a>
+</header>
+
+<main class="content-shell">
+  <section class="detail-shell">
+    <div class="detail-container" id="detailContainer">
+      <div class="loading"><i class="fas fa-spinner fa-spin"></i> Chargement des détails...</div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact-footer" class="site-footer">
+  <div class="footer-container">
+    <div class="contact-info">
+      <p><i class="fas fa-envelope"></i> <a href="mailto:contact@avenciacar.com">contact@avenciacar.com</a></p>
+      <p><i class="fas fa-phone"></i> <a href="tel:+212680849898">+212 680-849898</a></p>
+      <p><i class="fas fa-clock"></i> Service client disponible 7j/7</p>
+    </div>
+    <div class="social-footer">
+      <a href="https://wa.me/212680849898" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <a href="https://www.snapchat.com/@avenciacar" target="_blank" rel="noopener"><i class="fab fa-snapchat-ghost"></i> Snapchat</a>
+      <a href="https://www.facebook.com/people/Avencia-Car/pfbid025NFJy2Vzh2FvA3sp1XqRVQBg8GgUU7cFxKBA3f2jopd2A2NdHXH4tg1FKAjv657El/" target="_blank" rel="noopener"><i class="fab fa-facebook"></i> Facebook</a>
+      <a href="https://www.instagram.com/avenciacar" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="https://www.tiktok.com/@avencia.car?_r=1&_t=ZS-95tPh2fhUoy" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i> TikTok</a>
+    </div>
+    <div class="contact-rapide">
+      <a href="mailto:contact@avenciacar.com?subject=Demande%20de%20location"><i class="fas fa-paper-plane"></i> Nous écrire</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Avencia Car - Location de confiance</p>
+  </div>
+</footer>
+
+<div class="float-btn" id="floatBtn" aria-label="Afficher les réseaux">
+  <i class="fas fa-plus"></i>
+</div>
+
+<div class="social-menu" id="socialMenu">
+  <a href="https://wa.me/212680849898" target="_blank" class="social-bubble whatsapp">
+    <img src="Logoe/whatsapp.png" alt="WhatsApp" class="social-logo">
+    WhatsApp
+  </a>
+  <a href="https://www.snapchat.com/@avenciacar" target="_blank" class="social-bubble snapchat">
+    <img src="Logoe/snapchat.png" alt="Snapchat" class="social-logo">
+    Snapchat
+  </a>
+  <a href="https://www.facebook.com/people/Avencia-Car/pfbid025NFJy2Vzh2FvA3sp1XqRVQBg8GgUU7cFxKBA3f2jopd2A2NdHXH4tg1FKAjv657El/" target="_blank" class="social-bubble facebook">
+    <img src="Logoe/facebook.png" alt="Facebook" class="social-logo">
+    Facebook
+  </a>
+  <a href="https://www.instagram.com/avenciacar" target="_blank" class="social-bubble instagram">
+    <img src="Logoe/instagram.png" alt="Instagram" class="social-logo">
+    Instagram
+  </a>
+  <a href="https://www.tiktok.com/@avencia.car?_r=1&_t=ZS-95tPh2fhUoy" target="_blank" class="social-bubble tiktok">
+    <img src="Logoe/tiktok.jpg" alt="TikTok" class="social-logo">
+    TikTok
+  </a>
+</div>
+
+<script>
+  const detailContainer = document.getElementById('detailContainer');
+  const floatBtn = document.getElementById('floatBtn');
+  const socialMenu = document.getElementById('socialMenu');
+  let isSocialMenuOpen = false;
+
+  // Récupérer les données du véhicule depuis sessionStorage
+  function loadVehicleDetails() {
+    const vehicleData = sessionStorage.getItem('selectedVehicle');
+    
+    if (!vehicleData) {
+      detailContainer.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+          <p style="font-size: 1.2em; color: #666; margin-bottom: 20px;">Aucun véhicule sélectionné.</p>
+          <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Retour à l'accueil
+          </a>
+        </div>
+      `;
+      return;
+    }
+
+    try {
+      const vehicle = JSON.parse(vehicleData);
+      
+      const html = `
+        <button class="back-button" onclick="window.location.href='index.html'">
+          <i class="fas fa-arrow-left"></i> Retour
+        </button>
+
+        <div class="detail-image">
+          <img src="${vehicle.image}" alt="${vehicle.model}">
+        </div>
+
+        <div class="detail-info">
+          <div class="detail-intro">
+            <p class="detail-make">${vehicle.make}</p>
+            <h1 class="detail-title">${vehicle.model}</h1>
+            <p class="detail-subtitle">${vehicle.sub}</p>
+          </div>
+
+          <div class="detail-highlights">
+            <div class="highlight-card">
+              <span>Catégorie</span>
+              <strong>${vehicle.category || 'Premium'}</strong>
+            </div>
+            <div class="highlight-card">
+              <span>Assurance</span>
+              <strong>Incluse</strong>
+            </div>
+            <div class="highlight-card">
+              <span>État</span>
+              <strong>Prêt à rouler</strong>
+            </div>
+            <div class="highlight-card">
+              <span>Design</span>
+              <strong>Élégant & raffiné</strong>
+            </div>
+          </div>
+
+          <div class="detail-price">
+            ${vehicle.price} DH<span>par jour · Service premium inclus</span>
+          </div>
+
+          <div class="detail-description">
+            Découvrez un véhicule haut de gamme conçu pour une expérience de location fluide, raffinée et durable. Ce modèle offre un confort supérieur, un style affirmé et toutes les garanties pour un séjour sans compromis.
+          </div>
+
+          <div class="detail-actions">
+            <a href="#reservationForm" class="primary-btn" onclick="event.preventDefault(); document.getElementById('reservationForm').scrollIntoView({ behavior: 'smooth', block: 'center' });">
+              <i class="fab fa-whatsapp"></i> Je réserve maintenant
+            </a>
+            <button type="button" class="secondary-btn" onclick="document.getElementById('reservationForm').scrollIntoView({ behavior: 'smooth', block: 'center' });">
+              Compléter ma demande
+            </button>
+          </div>
+
+          <div class="form-card">
+            <form class="reservation-form" id="reservationForm" onsubmit="handleReservation(event)">
+              <div class="form-group">
+                <label for="clientName">Nom complet *</label>
+                <input type="text" id="clientName" name="clientName" required placeholder="Votre nom">
+              </div>
+
+              <div class="form-group">
+                <label for="clientCity">Ville *</label>
+                <input type="text" id="clientCity" name="clientCity" required placeholder="Votre ville">
+              </div>
+
+              <div class="form-row">
+                <div class="form-group inline-group">
+                  <label for="departDate">Date de départ *</label>
+                  <input type="date" id="departDate" name="departDate" required>
+                </div>
+                <div class="form-group inline-group">
+                  <label for="returnDate">Date de retour *</label>
+                  <input type="date" id="returnDate" name="returnDate" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="additionalInfo">Informations supplémentaires</label>
+                <textarea id="additionalInfo" name="additionalInfo" rows="3" placeholder="Des demandes spéciales ?"></textarea>
+              </div>
+
+              <button type="submit" class="whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> Réserver sur WhatsApp
+              </button>
+            </form>
+          </div>
+        </div>
+      `;
+      
+      detailContainer.innerHTML = html;
+      
+      // Stocker les données du véhicule globalement pour la fonction de soumission
+      window.currentVehicle = vehicle;
+      
+    } catch (error) {
+      console.error('Erreur lors du parsing des données du véhicule:', error);
+      detailContainer.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+          <p style="font-size: 1.2em; color: #666; margin-bottom: 20px;">Erreur lors du chargement des détails.</p>
+          <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Retour à l'accueil
+          </a>
+        </div>
+      `;
+    }
+  }
+
+  // Gérer la soumission du formulaire
+  function handleReservation(event) {
+    event.preventDefault();
+    
+    if (!window.currentVehicle) {
+      alert('Erreur: véhicule non trouvé.');
+      return;
+    }
+
+    const clientName = document.getElementById('clientName').value;
+    const clientCity = document.getElementById('clientCity').value;
+    const departDate = document.getElementById('departDate').value;
+    const returnDate = document.getElementById('returnDate').value;
+    const additionalInfo = document.getElementById('additionalInfo').value;
+    const vehicle = window.currentVehicle;
+
+    // Créer le message WhatsApp
+    const message = `Bonjour,\n\nJe souhaiterais réserver un véhicule:\n\n*Véhicule:* ${vehicle.model} (${vehicle.sub})\n*Prix:* ${vehicle.price} DH/jour\n\n*Informations client:*\nNom: ${clientName}\nVille: ${clientCity}\nDate de départ: ${departDate}\nDate de retour: ${returnDate}\n${additionalInfo ? '\n*Demandes spéciales:*\n' + additionalInfo : ''}\n\nMerci!`;
+
+    // Créer le lien WhatsApp
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappLink = `https://wa.me/212680849898?text=${encodedMessage}`;
+
+    // Ouvrir WhatsApp
+    window.open(whatsappLink, '_blank');
+  }
+
+  // Gestion du menu social flottant
+  floatBtn.addEventListener('click', () => {
+    isSocialMenuOpen = !isSocialMenuOpen;
+    
+    if (isSocialMenuOpen) {
+      socialMenu.classList.add('active');
+      floatBtn.classList.add('active');
+    } else {
+      socialMenu.classList.remove('active');
+      floatBtn.classList.remove('active');
+    }
+  });
+
+  // Fermer le menu social en cliquant ailleurs
+  document.addEventListener('click', (e) => {
+    if (!floatBtn.contains(e.target) && !socialMenu.contains(e.target) && isSocialMenuOpen) {
+      isSocialMenuOpen = false;
+      socialMenu.classList.remove('active');
+      floatBtn.classList.remove('active');
+    }
+  });
+
+  // Gestion du menu mobile
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mainNav = document.getElementById('mainNav');
+    
+    if (mobileMenuBtn && mainNav) {
+      mobileMenuBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        mainNav.classList.toggle('active');
+        const icon = mobileMenuBtn.querySelector('i');
+        if (icon) {
+          if (mainNav.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+          } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
+        }
+      });
+      
+      // Fermer le menu en cliquant sur un lien
+      const navLinks = mainNav.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          mainNav.classList.remove('active');
+          const icon = mobileMenuBtn.querySelector('i');
+          if (icon) {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
+        });
+      });
+      
+      // Fermer le menu en cliquant à l'extérieur
+      document.addEventListener('click', function(e) {
+        if (mainNav.classList.contains('active') && 
+            !mainNav.contains(e.target) && 
+            !mobileMenuBtn.contains(e.target)) {
+          mainNav.classList.remove('active');
+          const icon = mobileMenuBtn.querySelector('i');
+          if (icon) {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
+        }
+      });
+    }
+  });
+
+  // Charger les détails au chargement de la page
+  document.addEventListener('DOMContentLoaded', loadVehicleDetails);
+</script>
+
+</body>
+</html>
